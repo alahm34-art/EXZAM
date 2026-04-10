@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYBS60201 Study Guide</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-text-fill-color: unset; }
+body { font-family:'Segoe UI',Tahoma,Arial,sans-serif; background:#0f1117; color:#e2e8f0; padding:16px; line-height:1.7; -webkit-text-fill-color:#e2e8f0; }
+
+h1 { text-align:center; font-size:1.7rem; color:#60a5fa; padding:14px 0 4px; -webkit-text-fill-color:#60a5fa; }
+.subtitle { text-align:center; color:#94a3b8; -webkit-text-fill-color:#94a3b8; margin-bottom:20px; font-size:0.9rem; }
+
+/* TABS */
+.tabs { display:flex; flex-wrap:wrap; gap:7px; justify-content:center; margin-bottom:20px; }
+.tab-btn { padding:8px 15px; border-radius:20px; border:1.5px solid #334155; background:#1e293b; color:#94a3b8; -webkit-text-fill-color:#94a3b8; cursor:pointer; font-size:0.82rem; transition:all 0.2s; font-family:inherit; }
+.tab-btn.active,.tab-btn:hover { background:linear-gradient(135deg,#3b82f6,#7c3aed); color:white; -webkit-text-fill-color:white; border-color:transparent; }
+.section { display:none; } .section.active { display:block; }
+
+/* CARDS */
+.card { background:#1e293b; border-radius:14px; padding:18px; margin-bottom:14px; border:1px solid #2d3748; color:#e2e8f0; -webkit-text-fill-color:#e2e8f0; }
+.card-title { font-size:1rem; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
+/* BILINGUAL ROW */
+.bi { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:6px 0; }
+.en { background:#0f172a; border-radius:8px; padding:10px 12px; border-right:3px solid #3b82f6; color:#e2e8f0; -webkit-text-fill-color:#e2e8f0; }
+.ar { background:#0f172a; border-radius:8px; padding:10px 12px; border-right:3px solid #7c3aed; direction:rtl; font-size:0.88rem; color:#c4b5fd; -webkit-text-fill-color:#c4b5fd; }
+.en-label { font-size:0.7rem; color:#60a5fa; -webkit-text-fill-color:#60a5fa; font-weight:700; margin-bottom:3px; letter-spacing:1px; }
+.ar-label { font-size:0.7rem; color:#a78bfa; -webkit-text-fill-color:#a78bfa; font-weight:700; margin-bottom:3px; letter-spacing:1px; direction:rtl; }
+.en strong { color:#93c5fd; -webkit-text-fill-color:#93c5fd; }
+
+/* BOXES */
+.info-box { background:#0f172a; border-radius:8px; padding:12px; margin:8px 0; border-right:4px solid #3b82f6; color:#e2e8f0; -webkit-text-fill-color:#e2e8f0; }
+.warn-box { background:#1c1008; border-radius:8px; padding:12px; margin:8px 0; border-right:4px solid #f59e0b; color:#fcd34d; -webkit-text-fill-color:#fcd34d; }
+.danger-box { background:#1c0808; border-radius:8px; padding:12px; margin:8px 0; border-right:4px solid #ef4444; color:#fca5a5; -webkit-text-fill-color:#fca5a5; }
+.success-box { background:#0a1f0a; border-radius:8px; padding:12px; margin:8px 0; border-right:4px solid #22c55e; color:#86efac; -webkit-text-fill-color:#86efac; }
+
+/* BADGE */
+.badge { display:inline-block; padding:2px 9px; border-radius:10px; font-size:0.72rem; font-weight:700; }
+.red { background:#dc2626; color:white; -webkit-text-fill-color:white; } .blue { background:#2563eb; color:white; -webkit-text-fill-color:white; }
+.green { background:#16a34a; color:white; -webkit-text-fill-color:white; } .purple { background:#7c3aed; color:white; -webkit-text-fill-color:white; }
+.orange { background:#ea580c; color:white; -webkit-text-fill-color:white; } .yellow { background:#ca8a04; color:white; -webkit-text-fill-color:white; }
+
+ul { padding-right:18px; } ul li { margin:4px 0; color:#cbd5e1; font-size:0.9rem; -webkit-text-fill-color:#cbd5e1; }
+
+/* PHASE FLOW */
+.phase-flow { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0; align-items:center; }
+.phase-box { background:#1e3a5f; border:1.5px solid #3b82f6; border-radius:8px; padding:6px 12px; font-size:0.78rem; font-weight:600; color:#93c5fd; -webkit-text-fill-color:#93c5fd; text-align:center; }
+.phase-box.hl { background:#4c1d95; border-color:#a78bfa; color:#ddd6fe; -webkit-text-fill-color:#ddd6fe; }
+.phase-box small { display:block; font-size:0.65rem; color:#64748b; -webkit-text-fill-color:#64748b; font-weight:400; }
+.arrow { color:#475569; -webkit-text-fill-color:#475569; font-size:1rem; }
+
+/* TABLE */
+.tbl { width:100%; border-collapse:collapse; margin:10px 0; font-size:0.85rem; }
+.tbl th { background:#1e3a5f; color:#93c5fd; -webkit-text-fill-color:#93c5fd; padding:9px; text-align:left; }
+.tbl td { padding:8px 9px; border-bottom:1px solid #1e293b; color:#cbd5e1; -webkit-text-fill-color:#cbd5e1; }
+.tbl tr:hover td { background:#1e293b; }
+.tbl tr.hl td { background:#1a2a1a; color:#86efac; -webkit-text-fill-color:#86efac; font-weight:600; }
+
+/* OSI */
+.osi-layer { display:flex; align-items:flex-start; gap:10px; padding:9px 12px; border-radius:8px; margin:4px 0; background:#0f172a; color:#e2e8f0; -webkit-text-fill-color:#e2e8f0; }
+.layer-num { min-width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.85rem; flex-shrink:0; margin-top:2px; }
+.layer-name { font-weight:700; font-size:0.9rem; color:#e2e8f0; -webkit-text-fill-color:#e2e8f0; }
+.layer-ar { font-size:0.78rem; color:#a78bfa; -webkit-text-fill-color:#a78bfa; direction:rtl; }
+.layer-detail { font-size:0.78rem; color:#94a3b8; -webkit-text-fill-color:#94a3b8; margin-top:2px; }
+
+/* FLAGS */
+.flag-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:7px; margin:8px 0; }
+.flag-item { background:#0f172a; border-radius:8px; padding:9px; border:1px solid #334155; font-size:0.85rem; color:#e2e8f0; -webkit-text-fill-color:#e2e8f0; }
+.flag-label { font-weight:700; color:#60a5fa; -webkit-text-fill-color:#60a5fa; }
+.flag-ar { font-size:0.75rem; color:#a78bfa; -webkit-text-fill-color:#a78bfa; direction:rtl; }
+
+/* TIP */
+.tip { background:#0c1f0c; border:1px dashed #22c55e; border-radius:8px; padding:9px 12px; font-size:0.82rem; color:#86efac; -webkit-text-fill-color:#86efac; margin:10px 0; }
+.tip::before { content:"💡 Exam Tip / نكتة اختبار: "; font-weight:700; }
+
+/* COMPARE */
+.compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:10px 0; }
+.compare-card { background:#0f172a; border-radius:10px; padding:12px; border:1px solid #334155; color:#e2e8f0; -webkit-text-fill-color:#e2e8f0; }
+.compare-card h4 { margin-bottom:7px; font-size:0.88rem; }
+
+/* QUIZ */
+.quiz-section { margin-top:14px; border-top:2px dashed #334155; padding-top:14px; }
+.quiz-title { font-size:0.95rem; font-weight:700; color:#f59e0b; -webkit-text-fill-color:#f59e0b; margin-bottom:12px; display:flex; align-items:center; gap:6px; }
+.q-item { background:#0f172a; border-radius:10px; padding:14px; margin:10px 0; border:1px solid #334155; }
+.q-text { font-size:0.88rem; margin-bottom:10px; color:#e2e8f0; -webkit-text-fill-color:#e2e8f0; font-weight:600; }
+.q-ar { font-size:0.8rem; color:#94a3b8; -webkit-text-fill-color:#94a3b8; direction:rtl; margin-bottom:10px; }
+.options { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.opt { padding:9px 12px; background:#1e293b; border:1.5px solid #334155; border-radius:8px; cursor:pointer; font-size:0.82rem; transition:all 0.2s; text-align:center; user-select:none; color:#e2e8f0; -webkit-text-fill-color:#e2e8f0; }
+.opt:hover { border-color:#60a5fa; background:#1e3a5f; }
+.opt.correct { background:#0a2a0a; border-color:#22c55e; color:#86efac; -webkit-text-fill-color:#86efac; font-weight:700; }
+.opt.wrong { background:#2a0a0a; border-color:#ef4444; color:#fca5a5; -webkit-text-fill-color:#fca5a5; }
+.opt.show-correct { background:#0a2a0a; border-color:#22c55e; color:#86efac; -webkit-text-fill-color:#86efac; }
+.feedback { display:none; margin-top:10px; padding:10px; border-radius:8px; font-size:0.82rem; }
+.feedback.show { display:block; }
+.feedback.ok { background:#0a2a0a; color:#86efac; -webkit-text-fill-color:#86efac; border:1px solid #22c55e; }
+.feedback.bad { background:#2a0a0a; color:#fca5a5; -webkit-text-fill-color:#fca5a5; border:1px solid #ef4444; }
+.score-bar { background:#1e293b; border-radius:20px; padding:10px 16px; margin-top:12px; display:flex; align-items:center; justify-content:space-between; }
+.score-label { font-size:0.85rem; color:#94a3b8; -webkit-text-fill-color:#94a3b8; }
+.score-val { font-size:1.1rem; font-weight:800; color:#f59e0b; -webkit-text-fill-color:#f59e0b; }
+.reset-btn { padding:7px 16px; background:#334155; border:none; border-radius:8px; color:#e2e8f0; -webkit-text-fill-color:#e2e8f0; cursor:pointer; font-size:0.8rem; font-family:inherit; }
+.reset-btn:hover { background:#475569; }
+
+@media(max-width:600px){
+  .bi,.compare-grid,.options,.flag-grid{grid-template-columns:1fr;}
+  h1{font-size:1.3rem;}
+}
+</style>
+</head>
+<body>
+
+<h1>📚 CYBS60201 — Bilingual Study Guide</h1>
+<p class="subtitle">Al-Baha University · Semester II 1446H &nbsp;|&nbsp; مرجع مكثف ثنائي اللغة للاختبار</p>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="show('ptes',this)">🎯 PTES Phases</button>
+  <button class="tab-btn" onclick="show('strategies',this)">🔲 Test Strategies</button>
+  <button class="tab-btn" onclick="show('osi',this)">🌐 OSI Model</button>
+  <button class="tab-btn" onclick="show('tcpip',this)">🔗 TCP/IP</button>
+  <button class="tab-btn" onclick="show('protocols',this)">📡 Protocols</button>
+  <button class="tab-btn" onclick="show('ports',this)">🔌 Ports</button>
+  <button class="tab-btn" onclick="show('quiz_all',this)">🧠 Full Quiz</button>
+</div>
+
+<!-- ====== PTES ====== -->
+<div id="ptes" class="section active">
+
+  <div class="card">
+    <div class="card-title">🎯 PTES — 7 Phases <span style="font-size:0.75rem;color:#64748b;">Penetration Testing Execution Standard</span></div>
+    <div class="phase-flow">
+      <div class="phase-box">1. Pre-engagement<small>ما قبل التعامل</small></div><div class="arrow">→</div>
+      <div class="phase-box hl">2. Intelligence Gathering<small>جمع المعلومات ⭐</small></div><div class="arrow">→</div>
+      <div class="phase-box">3. Threat Modeling<small>نمذجة التهديدات</small></div><div class="arrow">→</div>
+      <div class="phase-box hl">4. Vulnerability Analysis<small>تحليل الثغرات ⭐</small></div><div class="arrow">→</div>
+      <div class="phase-box">5. Exploitation<small>الاستغلال</small></div><div class="arrow">→</div>
+      <div class="phase-box">6. Post-Exploitation<small>ما بعد الاستغلال</small></div><div class="arrow">→</div>
+      <div class="phase-box hl">7. Reporting<small>التقرير ⭐</small></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Phase 1: Pre-engagement Interactions <span class="badge red">Critical Foundation</span></div>
+    <div class="danger-box">⚠️ Any mistake here has a <strong>significant impact</strong> on the rest of the assessment<br><small style="direction:rtl;display:block;">أي خطأ هنا يؤثر بشكل كبير على باقي التقييم</small></div>
+    <br>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div><strong>Main Aim:</strong> Explain tools & techniques for a successful pre-engagement step.</div>
+      <div class="ar"><div class="ar-label">عربي</div>الهدف الرئيسي: شرح الأدوات والتقنيات لنجاح مرحلة ما قبل التعامل</div>
+    </div>
+    <br>
+    <strong style="color:#93c5fd;">Core Components of Phase 1:</strong>
+    <div class="bi" style="margin-top:8px;">
+      <div class="en">
+        <div class="en-label">ENGLISH</div>
+        • Request for an assessment<br>
+        • Bidding<br>
+        • <strong>Signing of Engagement Letter (EL)</strong><br>
+        • Scoping Meeting<br>
+        • Handling of <strong>Scope Creep</strong><br>
+        • Questionnaires
+      </div>
+      <div class="ar">
+        <div class="ar-label">عربي</div>
+        • طلب التقييم<br>
+        • العطاء / المناقصة<br>
+        • <strong>توقيع خطاب التعامل (EL)</strong><br>
+        • اجتماع تحديد النطاق<br>
+        • التعامل مع <strong>توسع النطاق</strong><br>
+        • الاستبيانات
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔍 Phase 2: Intelligence Gathering</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>Definition:</strong> Preliminary surveying against a target to gather maximum information.<br><br>
+        <strong>Utility:</strong> Used during <strong>vulnerability assessment</strong> & <strong>exploitation</strong> phases.<br><br>
+        <strong>Organizational Benefit:</strong> Helps determine their <strong>external exposure</strong>.
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        التعريف: مسح أولي للهدف لتجميع أقصى معلومات<br><br>
+        الاستخدام: تُستخدم في مرحلتي تحليل الثغرات والاستغلال<br><br>
+        الفائدة: تساعد على معرفة الانكشاف الخارجي للمؤسسة
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚠️ Phase 4: Vulnerability Analysis <span class="badge orange">Most Time-Consuming</span></div>
+    <div class="warn-box">⏱️ Vulnerability Analysis is the <strong>most time-consuming phase</strong> of PTES<br><small style="direction:rtl;display:block;">هذه المرحلة الأكثر استهلاكاً للوقت</small></div>
+    <div class="bi" style="margin-top:10px;">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>Transition:</strong> Assessor identifies <strong>feasible targets</strong> for further testing.<br><br>
+        <strong>Critical Note:</strong> In phases 1-3, only info is gathered. The assessor has <strong>not touched</strong> any resources yet!
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        المحور: المقيّم يحدد الأهداف القابلة للاختبار<br><br>
+        ملاحظة: في المراحل 1-3 فقط معلومات تُجمع. المقيّم لم يلمس أي موارد بعد!
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💥 Phase 5: Exploitation</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>Focus:</strong> Gaining access by bypassing security restrictions.<br>
+        <strong>The Culmination:</strong> All previous work leads to the actual breach.<br><br>
+        <strong>Methods of Access:</strong><br>
+        • Remote exploits & custom code<br>
+        • Bypassing Antivirus (AV)<br>
+        • Login via <strong>weak credentials</strong>
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        التركيز: الوصول للنظام بتجاوز القيود الأمنية<br>
+        الذروة: كل العمل السابق يؤدي للاختراق الفعلي<br><br>
+        طرق الوصول:<br>
+        • استغلال عن بُعد وكود مخصص<br>
+        • تجاوز برامج مكافحة الفيروسات<br>
+        • تسجيل دخول بكلمات مرور ضعيفة
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔓 Phase 6: Post-Exploitation</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>Definition:</strong> Begins after successful breach. Focuses on the <strong>value</strong> of the compromised machine.<br>
+        <strong>Objective:</strong> Determine impact & what attacker could achieve once "inside".<br>
+        <strong>Business Value:</strong> Identify data sensitivity & usefulness for further network compromise.
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        التعريف: تبدأ بعد الاختراق الناجح. تركز على قيمة الجهاز المخترق<br>
+        الهدف: تحديد التأثير وما يمكن للمهاجم تحقيقه من الداخل<br>
+        القيمة: تحديد حساسية البيانات وفائدتها لمزيد من الاختراق
+      </div>
+    </div>
+    <br>
+    <div class="bi">
+      <div class="en"><div class="en-label">Analysis & Pillaging</div>
+        <strong>Infrastructure Analysis:</strong> Interfaces, routing, DNS, proxy servers.<br>
+        <strong>Pillaging:</strong> Extracting data from programs, databases, printers.
+      </div>
+      <div class="ar"><div class="ar-label">تحليل ونهب</div>
+        تحليل البنية: الواجهات، التوجيه، DNS، بروكسي<br>
+        النهب: استخراج بيانات من برامج وقواعد بيانات وطابعات
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧹 Professional Cleanup <span class="badge blue">Before Reporting</span></div>
+    <div class="info-box">Cleanup is a <strong>mandatory requirement</strong> to return the system to its original state.<br><small style="direction:rtl;display:block;">إلزامي — إعادة النظام لحالته الأصلية</small></div>
+    <div class="bi" style="margin-top:10px;">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        • <strong>Restoration:</strong> Reverting system settings & configs<br>
+        • <strong>Removal:</strong> Deleting backdoors, scripts, artifacts<br>
+        • <strong>Account Hygiene:</strong> Remove accounts created during test
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        • الاستعادة: إعادة إعدادات النظام<br>
+        • الإزالة: حذف الـ backdoors والسكريبتات<br>
+        • نظافة الحسابات: حذف الحسابات المنشأة أثناء الاختبار
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📄 Phase 7: Reporting <span class="badge blue">Final & Most Important</span></div>
+    <div class="info-box">The client <strong>pays</strong> on the basis of the final report!<br><small style="direction:rtl;display:block;">العميل يدفع بناءً على التقرير النهائي</small></div>
+    <div class="bi" style="margin-top:10px;">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>The Mirror:</strong> Report reflects all findings discovered by assessor.<br>
+        <strong>Value Proposition:</strong> Translates technical vulnerabilities into actionable business intelligence.
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        المرآة: التقرير يعكس جميع النتائج<br>
+        القيمة: يحول الثغرات التقنية إلى معلومات أعمال قابلة للتنفيذ
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🆚 Vulnerability Scanning vs. Penetration Testing</div>
+    <table class="tbl">
+      <tr><th>Aspect</th><th>Vulnerability Scanning</th><th>Penetration Testing</th></tr>
+      <tr><td>Nature</td><td>Broad identification</td><td>Goal-oriented verification</td></tr>
+      <tr><td>Result</td><td>List of potential bugs</td><td>Proves exploitability & impact</td></tr>
+      <tr><td>Method</td><td>Passive / automated</td><td>Active exploitation</td></tr>
+      <tr><td>عربي</td><td>تحديد واسع للثغرات المحتملة</td><td>إثبات قابلية الاستغلال</td></tr>
+    </table>
+  </div>
+
+  <!-- QUIZ PTES -->
+  <div class="quiz-section">
+    <div class="quiz-title">🧠 Quiz — PTES Phases</div>
+    <div id="quiz-ptes"></div>
+    <div class="score-bar"><span class="score-label">Score / الدرجة</span><span class="score-val" id="score-ptes">0 / 0</span><button class="reset-btn" onclick="resetQuiz('ptes')">↺ Reset</button></div>
+  </div>
+</div>
+
+<!-- ====== STRATEGIES ====== -->
+<div id="strategies" class="section">
+
+  <div class="card">
+    <div class="card-title">⬛ Black Box Testing</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>Knowledge:</strong> Zero knowledge provided to the tester.<br>
+        <strong>Simulation:</strong> External attacker perspective.<br>
+        <strong>Note:</strong> High realism, but requires <strong>extensive time</strong> for reconnaissance.
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        المعرفة: صفر معلومات للمختبر<br>
+        المحاكاة: منظور مهاجم خارجي<br>
+        ملاحظة: واقعية عالية لكن يتطلب وقتاً طويلاً للاستطلاع
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⬜ White Box Testing</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>Knowledge:</strong> Full disclosure — Source code, IP maps, Diagrams.<br>
+        <strong>Simulation:</strong> Malicious insider or administrator.<br>
+        <strong>Note:</strong> Maximum efficiency and technical depth.
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        المعرفة: كاملة — كود المصدر، خرائط IP، مخططات<br>
+        المحاكاة: مدير داخلي خبيث<br>
+        ملاحظة: أقصى كفاءة وعمق تقني
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔲 Grey Box Testing <span class="badge green">⭐ Most Common Professional Model</span></div>
+    <div class="warn-box" style="color:#fcd34d;">⭐ Grey Box = the most common testing model in professional practice<br><small style="direction:rtl;display:block;">الأكثر شيوعاً في الممارسة المهنية</small></div>
+    <div class="bi" style="margin-top:10px;">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>Knowledge:</strong> Partial disclosure (standard user credentials).<br>
+        <strong>Why most common?</strong> Balances realism with efficiency, allowing testers to simulate real-world attacks.
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        المعرفة: جزئية (بيانات مستخدم عادي)<br>
+        لماذا الأشيع؟ يوازن بين الواقعية والكفاءة، يسمح بمحاكاة هجمات العالم الحقيقي
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🙈 Double-Blind Testing</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>Defender is not notified</strong> — tests detection and response speed.
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        المدافع لا يُخطَر — يختبر سرعة الكشف والاستجابة
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Quick Comparison / مقارنة سريعة</div>
+    <table class="tbl">
+      <tr><th>Type / النوع</th><th>Knowledge / المعرفة</th><th>Simulates / يحاكي</th><th>Key Note</th></tr>
+      <tr><td><strong>Black Box</strong></td><td>Zero / صفر</td><td>External attacker</td><td>Slow, high realism</td></tr>
+      <tr class="hl"><td><strong>Grey Box ⭐</strong></td><td>Partial / جزئية</td><td>Regular user</td><td>Most Common</td></tr>
+      <tr><td><strong>White Box</strong></td><td>Full / كاملة</td><td>Admin/Insider</td><td>Deepest technical</td></tr>
+      <tr><td><strong>Double-Blind</strong></td><td>—</td><td>No defender notice</td><td>Tests response</td></tr>
+    </table>
+    <div class="tip">When exam asks "most common professional model" → always Grey Box!</div>
+  </div>
+
+  <!-- QUIZ STRATEGIES -->
+  <div class="quiz-section">
+    <div class="quiz-title">🧠 Quiz — Testing Strategies</div>
+    <div id="quiz-strategies"></div>
+    <div class="score-bar"><span class="score-label">Score / الدرجة</span><span class="score-val" id="score-strategies">0 / 0</span><button class="reset-btn" onclick="resetQuiz('strategies')">↺ Reset</button></div>
+  </div>
+</div>
+
+<!-- ====== OSI ====== -->
+<div id="osi" class="section">
+  <div class="card">
+    <div class="card-title">🌐 OSI Model — 7 Layers</div>
+    <div class="tip">Memory trick: <strong>P</strong>lease <strong>D</strong>o <strong>N</strong>ot <strong>T</strong>hrow <strong>S</strong>ausage <strong>P</strong>izza <strong>A</strong>way (Physical→Application)</div>
+
+    <div class="osi-layer">
+      <div class="layer-num" style="background:#7c3aed;color:white;">7</div>
+      <div><div class="layer-name">Application Layer <span class="layer-ar">طبقة التطبيقات</span></div>
+      <div class="layer-detail">Enables user interaction with network services | HTTP, FTP, IRC, SSH, DNS</div></div>
+    </div>
+    <div class="osi-layer">
+      <div class="layer-num" style="background:#6d28d9;color:white;">6</div>
+      <div><div class="layer-name">Presentation Layer <span class="layer-ar">طبقة العرض</span></div>
+      <div class="layer-detail">Data format conversion + encryption & compression | SSL, SSH, IMAP, FTP, MPEG, JPEG</div></div>
+    </div>
+    <div class="osi-layer">
+      <div class="layer-num" style="background:#5b21b6;color:white;">5</div>
+      <div><div class="layer-name">Session Layer <span class="layer-ar">طبقة الجلسة</span></div>
+      <div class="layer-detail">Manages communication sessions (open/close) | APIs, Sockets, WinSock</div></div>
+    </div>
+    <div class="osi-layer">
+      <div class="layer-num" style="background:#2563eb;color:white;">4</div>
+      <div><div class="layer-name">Transport Layer <span class="layer-ar">طبقة النقل</span></div>
+      <div class="layer-detail">Reliable or unreliable delivery using transmission protocols | TCP, UDP</div></div>
+    </div>
+    <div class="osi-layer">
+      <div class="layer-num" style="background:#0891b2;color:white;">3</div>
+      <div><div class="layer-name">Network Layer <span class="layer-ar">طبقة الشبكة</span></div>
+      <div class="layer-detail">Routes data between devices across multiple networks | IP, ICMP, IPSec, IGMP</div></div>
+    </div>
+    <div class="osi-layer">
+      <div class="layer-num" style="background:#059669;color:white;">2</div>
+      <div><div class="layer-name">Data Link Layer <span class="layer-ar">طبقة ربط البيانات</span></div>
+      <div class="layer-detail">Formats data into frames + error detection | Ethernet, PPP, Switches, Bridges</div></div>
+    </div>
+    <div class="osi-layer">
+      <div class="layer-num" style="background:#dc2626;color:white;">1</div>
+      <div><div class="layer-name">Physical Layer <span class="layer-ar">الطبقة الفيزيائية</span></div>
+      <div class="layer-detail">Transmits raw bits (0s and 1s) over physical medium | Cables, Fiber, Wireless, Hubs, Repeaters</div></div>
+    </div>
+  </div>
+
+  <!-- QUIZ OSI -->
+  <div class="quiz-section">
+    <div class="quiz-title">🧠 Quiz — OSI Model</div>
+    <div id="quiz-osi"></div>
+    <div class="score-bar"><span class="score-label">Score / الدرجة</span><span class="score-val" id="score-osi">0 / 0</span><button class="reset-btn" onclick="resetQuiz('osi')">↺ Reset</button></div>
+  </div>
+</div>
+
+<!-- ====== TCP/IP ====== -->
+<div id="tcpip" class="section">
+
+  <div class="card">
+    <div class="card-title">🔗 TCP/IP Model</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        A practical networking model for Internet communication.<br>
+        Combines Physical + Data Link layers into one: <strong>Host-to-Network Layer</strong>.
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        نموذج شبكي عملي للاتصال عبر الإنترنت<br>
+        يجمع الطبقة الفيزيائية وربط البيانات في: طبقة المضيف للشبكة
+      </div>
+    </div>
+    <br>
+    <table class="tbl">
+      <tr><th>TCP/IP Layer</th><th>OSI Equivalent</th><th>Data Unit</th></tr>
+      <tr><td>Application</td><td>App + Presentation + Session (7,6,5)</td><td>Data</td></tr>
+      <tr><td>Transport</td><td>Transport (4)</td><td>Segment</td></tr>
+      <tr><td>Internet</td><td>Network (3)</td><td>Packet</td></tr>
+      <tr><td>Host-to-Network</td><td>Data Link + Physical (2,1)</td><td>Frame</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🌐 Internet Protocol (IP)</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>Operates at:</strong> Network Layer (OSI) / Internet Layer (TCP/IP)<br>
+        <strong>Best-Effort Delivery:</strong> Does NOT guarantee delivery.<br>
+        <strong>IPv4:</strong> 32-bit addresses<br>
+        <strong>IPv6:</strong> 128-bit addresses (newer)
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        يعمل في: طبقة الشبكة (OSI) / طبقة الإنترنت (TCP/IP)<br>
+        تسليم بأفضل جهد: لا يضمن التسليم<br>
+        IPv4: عناوين 32-bit<br>
+        IPv6: عناوين 128-bit (أحدث)
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📦 IPv4 Header — Key Fields</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        • <strong>Identification:</strong> Identifies fragments for reassembly<br>
+        • <strong>Flags (3 bits):</strong><br>
+        &nbsp;&nbsp;— <strong>D (Do Not Fragment):</strong> Prevents fragmentation<br>
+        &nbsp;&nbsp;— <strong>M (More Fragments):</strong> More fragments follow<br>
+        • <strong>Fragment Offset:</strong> Position of fragment in original data<br>
+        • <strong>TTL:</strong> Limits packet lifetime (hop count)<br>
+        • <strong>Protocol:</strong> TCP=6, UDP=17<br>
+        • <strong>Header Checksum:</strong> Verifies header integrity
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        • التعريف: يحدد الشظايا لإعادة التجميع<br>
+        • العلامات (3 bits):<br>
+        &nbsp;&nbsp;— D: يمنع التجزئة<br>
+        &nbsp;&nbsp;— M: يشير لوجود شظايا أخرى<br>
+        • إزاحة الشظية: موقع الشظية في البيانات الأصلية<br>
+        • TTL: يحد عمر الحزمة بعدد القفزات<br>
+        • البروتوكول: TCP=6, UDP=17<br>
+        • Checksum: يتحقق من سلامة الرأس
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔵 TCP — Transmission Control Protocol</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        • <strong>Connection-oriented:</strong> Session established before data transfer<br>
+        • Communication closed after transfer complete<br>
+        • Provides <strong>reliable</strong> data delivery
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        • موجه للاتصال: جلسة تُنشأ قبل نقل البيانات<br>
+        • الاتصال يُغلق بعد اكتمال النقل<br>
+        • يوفر تسليماً موثوقاً للبيانات
+      </div>
+    </div>
+    <br>
+    <strong style="color:#93c5fd;">TCP Header Fields:</strong>
+    <div class="bi" style="margin-top:8px;">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        • Source/Destination Port: Identifies applications<br>
+        • Sequence/Acknowledgment Numbers: Tracks order<br>
+        • <strong>Checksum:</strong> Verifies data integrity<br>
+        • Window: Data allowed before ACK<br>
+        • Options: Selective ACK, timestamps
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        • المنفذ المصدر/الوجهة: يحدد التطبيقات<br>
+        • أرقام التسلسل والإقرار: يتتبع الترتيب<br>
+        • Checksum: يتحقق من سلامة البيانات<br>
+        • النافذة: البيانات المسموح قبل ACK<br>
+        • الخيارات: إقرار انتقائي، طوابع زمنية
+      </div>
+    </div>
+    <br>
+    <strong style="color:#93c5fd;">TCP Flags / أعلام TCP:</strong>
+    <div class="flag-grid" style="margin-top:8px;">
+      <div class="flag-item"><span class="flag-label">SYN</span> — Synchronize<br><span class="flag-ar">مزامنة — بدء الاتصال</span></div>
+      <div class="flag-item"><span class="flag-label">ACK</span> — Acknowledge<br><span class="flag-ar">إقرار / تأكيد</span></div>
+      <div class="flag-item"><span class="flag-label">FIN</span> — Finish communication<br><span class="flag-ar">إنهاء الاتصال</span></div>
+      <div class="flag-item"><span class="flag-label">RST</span> — Reset connection<br><span class="flag-ar">إعادة تعيين الاتصال</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🤝 Three-Way Handshake</div>
+    <div class="info-box">Ensures both hosts are ready for communication<br><small style="direction:rtl;display:block;">يضمن أن كلا الجهازين جاهزان للاتصال</small></div>
+    <br>
+    <table class="tbl">
+      <tr><th>Step</th><th>Action</th><th>Details</th><th>عربي</th></tr>
+      <tr><td><strong style="color:#22c55e;">① SYN</strong></td><td>Host P → Host Q</td><td>SYN, seq = x</td><td>طلب المزامنة</td></tr>
+      <tr><td><strong style="color:#f59e0b;">② SYN-ACK</strong></td><td>Host Q → Host P</td><td>ACK = x+1, SYN, seq = y</td><td>إقرار وطلب مزامنة</td></tr>
+      <tr><td><strong style="color:#60a5fa;">③ ACK</strong></td><td>Host P → Host Q</td><td>ACK = y+1</td><td>إقرار نهائي — يبدأ الاتصال</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ UDP — User Datagram Protocol</div>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h4 style="color:#ef4444;">Characteristics / الخصائص</h4>
+        <ul>
+          <li>Connectionless — لا يُنشئ اتصال</li>
+          <li>No acknowledgment — لا إقرار</li>
+          <li>Faster — overhead أقل</li>
+          <li>Unreliable — غير موثوق</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <h4 style="color:#a78bfa;">UDP Header (only 8 bytes!)</h4>
+        <ul>
+          <li>Source Port (16 bits)</li>
+          <li>Destination Port (16 bits)</li>
+          <li>Length (16 bits)</li>
+          <li><strong>Checksum (16 bits) — Optional / اختياري</strong></li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <strong>Use Cases / حالات الاستخدام:</strong> Video streaming, Online gaming, DNS lookups
+    <div class="tip">UDP trades reliability for speed — perfect for real-time apps | UDP تبادل الموثوقية بالسرعة</div>
+  </div>
+
+  <!-- QUIZ TCPIP -->
+  <div class="quiz-section">
+    <div class="quiz-title">🧠 Quiz — TCP/IP & Protocols</div>
+    <div id="quiz-tcpip"></div>
+    <div class="score-bar"><span class="score-label">Score / الدرجة</span><span class="score-val" id="score-tcpip">0 / 0</span><button class="reset-btn" onclick="resetQuiz('tcpip')">↺ Reset</button></div>
+  </div>
+</div>
+
+<!-- ====== PROTOCOLS ====== -->
+<div id="protocols" class="section">
+  <div class="card">
+    <div class="card-title">📡 ICMP — Internet Control Message Protocol</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>Error Reporting:</strong> Notifies network devices of issues — unreachable hosts, congestion, routing failures.<br>
+        <strong>Operational Messages:</strong> Diagnostic & informational messages about network status.<br>
+        <strong>Not for Data Exchange:</strong> Unlike TCP/UDP — only for control & management.
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        الإبلاغ عن الأخطاء: يُخطر الأجهزة بالمشاكل<br>
+        الرسائل التشغيلية: رسائل تشخيصية عن حالة الشبكة<br>
+        ليس لتبادل البيانات: فقط للتحكم والإدارة
+      </div>
+    </div>
+    <br>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h4 style="color:#22c55e;">① Ping</h4>
+        <div>Check if host is reachable & measure <strong>round-trip time (RTT)</strong><br><span style="direction:rtl;display:block;font-size:0.8rem;color:#94a3b8;">فحص إمكانية الوصول وقياس زمن الرحلة</span></div>
+      </div>
+      <div class="compare-card">
+        <h4 style="color:#60a5fa;">② Traceroute</h4>
+        <div>Determine the <strong>path packets take</strong> to a destination<br><span style="direction:rtl;display:block;font-size:0.8rem;color:#94a3b8;">تحديد مسار الحزم للوجهة</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🆚 TCP vs UDP — Full Comparison</div>
+    <table class="tbl">
+      <tr><th>Property</th><th>TCP</th><th>UDP</th></tr>
+      <tr><td>Connection</td><td>Connection-oriented<br><small>موجه للاتصال</small></td><td>Connectionless<br><small>غير موجه للاتصال</small></td></tr>
+      <tr><td>Reliability</td><td>✅ Reliable — موثوق</td><td>❌ Unreliable — غير موثوق</td></tr>
+      <tr><td>Speed</td><td>Slower — أبطأ</td><td>✅ Faster — أسرع</td></tr>
+      <tr><td>Handshake</td><td>Three-way SYN/ACK</td><td>None — لا يوجد</td></tr>
+      <tr><td>Header Size</td><td>20+ bytes</td><td>8 bytes only!</td></tr>
+      <tr><td>Error Check</td><td>✅ Mandatory checksum</td><td>Optional checksum</td></tr>
+      <tr><td>Use Cases</td><td>HTTP, HTTPS, Email, FTP</td><td>Streaming, Gaming, DNS</td></tr>
+    </table>
+  </div>
+
+  <!-- QUIZ PROTOCOLS -->
+  <div class="quiz-section">
+    <div class="quiz-title">🧠 Quiz — Protocols</div>
+    <div id="quiz-protocols"></div>
+    <div class="score-bar"><span class="score-label">Score / الدرجة</span><span class="score-val" id="score-protocols">0 / 0</span><button class="reset-btn" onclick="resetQuiz('protocols')">↺ Reset</button></div>
+  </div>
+</div>
+
+<!-- ====== PORTS ====== -->
+<div id="ports" class="section">
+  <div class="card">
+    <div class="card-title">🔌 What is a Port? / ما هو المنفذ؟</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>Definition:</strong> A number used to identify a specific <strong>service or application</strong> on a device within a network.<br>
+        <strong>Purpose:</strong> Directs data to the right service (web server, email, file transfer).<br>
+        <strong>Categories:</strong> Associated with TCP or UDP.
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        التعريف: رقم لتحديد خدمة أو تطبيق معين على جهاز في الشبكة<br>
+        الغرض: يوجه البيانات للخدمة الصحيحة<br>
+        الأنواع: مرتبطة بـ TCP أو UDP
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Key Common Ports — المنافذ الشائعة</div>
+    <table class="tbl">
+      <tr><th>Port</th><th>Protocol</th><th>Service</th><th>عربي</th></tr>
+      <tr class="hl"><td><strong>20/21</strong></td><td>FTP (TCP)</td><td>File Transfer Protocol</td><td>نقل الملفات ⭐</td></tr>
+      <tr><td><strong>22</strong></td><td>SSH (TCP/UDP)</td><td>Secure Shell — encrypted remote login</td><td>دخول عن بُعد مشفر</td></tr>
+      <tr><td><strong>23</strong></td><td>Telnet (TCP)</td><td>Unencrypted remote login (less secure than SSH)</td><td>دخول عن بُعد غير مشفر</td></tr>
+      <tr><td><strong>25</strong></td><td>SMTP (TCP)</td><td>Simple Mail Transfer Protocol — email sending</td><td>إرسال البريد الإلكتروني</td></tr>
+      <tr class="hl"><td><strong>53</strong></td><td>DNS (TCP/UDP)</td><td>Domain Name System — resolving domain names</td><td>تحليل أسماء النطاقات ⭐</td></tr>
+      <tr><td><strong>67/68</strong></td><td>DHCP (UDP)</td><td>Dynamic Host Config — assigning IP addresses</td><td>تعيين عناوين IP</td></tr>
+      <tr class="hl"><td><strong>80</strong></td><td>HTTP (TCP)</td><td>HyperText Transfer Protocol — web traffic</td><td>حركة الويب ⭐</td></tr>
+      <tr class="hl"><td><strong>443</strong></td><td>HTTPS (TCP/UDP)</td><td>HTTP with SSL — secure web traffic</td><td>ويب آمن ⭐</td></tr>
+    </table>
+    <div class="tip">Highlighted ports (20/21, 53, 80, 443) were yellow-highlighted in the slides — high exam probability!</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔒 Security Relevance / الأهمية الأمنية</div>
+    <div class="bi">
+      <div class="en"><div class="en-label">ENGLISH</div>
+        <strong>Network Configuration:</strong> Ensures communication with correct service.<br>
+        <strong>Security:</strong> Blocking/restricting ports protects systems from unauthorized access.<br>
+        Telnet (23) is <strong>less secure</strong> than SSH (22) — no encryption!
+      </div>
+      <div class="ar"><div class="ar-label">عربي</div>
+        حجب المنافذ يحمي الأنظمة من الوصول غير المصرح<br>
+        Telnet أقل أماناً من SSH لأنه لا يشفر البيانات
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ PORTS -->
+  <div class="quiz-section">
+    <div class="quiz-title">🧠 Quiz — Ports</div>
+    <div id="quiz-ports"></div>
+    <div class="score-bar"><span class="score-label">Score / الدرجة</span><span class="score-val" id="score-ports">0 / 0</span><button class="reset-btn" onclick="resetQuiz('ports')">↺ Reset</button></div>
+  </div>
+</div>
+
+<!-- ====== FULL QUIZ ====== -->
+<div id="quiz_all" class="section">
+  <div class="card">
+    <div class="card-title">🧠 Full Exam Simulation — اختبار شامل</div>
+    <div class="info-box">All questions from all topics — mixed randomly.<br><small style="direction:rtl;display:block;">جميع الأسئلة من كل المواضيع مخلوطة عشوائياً</small></div>
+  </div>
+  <div id="quiz-all-container"></div>
+  <div class="score-bar"><span class="score-label">Total Score / المجموع</span><span class="score-val" id="score-all">0 / 0</span><button class="reset-btn" onclick="resetQuiz('all')">↺ Reset All</button></div>
+</div>
+
+<script>
+// ============================================================
+// QUESTION BANK
+// ============================================================
+const ALL_QUESTIONS = {
+  ptes: [
+    {
+      q: "What is the MOST time-consuming phase of PTES?",
+      ar: "ما هي المرحلة الأكثر استهلاكاً للوقت في PTES؟",
+      opts: ["Exploitation", "Vulnerability Analysis", "Reporting", "Intelligence Gathering"],
+      ans: 1,
+      exp: "Vulnerability Analysis is explicitly stated as the most time-consuming phase of PTES. | تحليل الثغرات هي الأكثر استهلاكاً للوقت"
+    },
+    {
+      q: "Which PTES phase is called the 'Critical Foundation' where any mistake significantly impacts the rest?",
+      ar: "أي مرحلة تسمى 'الأساس الحرج' حيث أي خطأ يؤثر على الباقي؟",
+      opts: ["Intelligence Gathering", "Threat Modeling", "Pre-engagement Interactions", "Reporting"],
+      ans: 2,
+      exp: "Phase 1: Pre-engagement Interactions is the Critical Foundation. | المرحلة 1: ما قبل التعامل هي الأساس الحرج"
+    },
+    {
+      q: "What is the correct order of PTES phases 4, 5, 6?",
+      ar: "ما الترتيب الصحيح للمراحل 4، 5، 6 في PTES؟",
+      opts: ["Exploitation → Vulnerability Analysis → Post-Exploitation", "Vulnerability Analysis → Exploitation → Post-Exploitation", "Post-Exploitation → Exploitation → Vulnerability Analysis", "Threat Modeling → Exploitation → Reporting"],
+      ans: 1,
+      exp: "Phase 4: Vulnerability Analysis → Phase 5: Exploitation → Phase 6: Post-Exploitation"
+    },
+    {
+      q: "What document must be signed during Phase 1 Pre-engagement?",
+      ar: "ما المستند الذي يجب توقيعه في المرحلة 1؟",
+      opts: ["Security Policy", "Engagement Letter (EL)", "NDA Agreement", "Test Report"],
+      ans: 1,
+      exp: "The Engagement Letter (EL) is a core component of Phase 1. | خطاب التعامل (EL) مكون أساسي في المرحلة 1"
+    },
+    {
+      q: "In PTES Phase 6 (Post-Exploitation), what is 'Pillaging'?",
+      ar: "في المرحلة 6، ما هو 'Pillaging' (النهب)؟",
+      opts: ["Covering attacker tracks", "Obtaining data from targeted hosts relevant to goals", "Creating new user accounts", "Deleting system logs"],
+      ans: 1,
+      exp: "Pillaging = obtaining information from targeted hosts relevant to pre-defined goals. | النهب = الحصول على معلومات من الأجهزة المستهدفة"
+    },
+    {
+      q: "What is the difference between Vulnerability Scanning and Penetration Testing?",
+      ar: "ما الفرق بين فحص الثغرات واختبار الاختراق؟",
+      opts: ["No difference", "Scanning proves exploitability; Pen Testing just lists bugs", "Scanning lists bugs; Pen Testing proves exploitability via active exploitation", "Pen Testing is automated; Scanning is manual"],
+      ans: 2,
+      exp: "Vulnerability Scanning = list of bugs. Penetration Testing = proves exploitability via active exploitation."
+    },
+    {
+      q: "What is the PURPOSE of the Cleanup phase in PTES?",
+      ar: "ما هدف مرحلة التنظيف في PTES؟",
+      opts: ["Write the final report", "Return the system to its original state", "Gather final intelligence", "Escalate privileges"],
+      ans: 1,
+      exp: "Cleanup is mandatory to return the system to its original state — removes backdoors, fake accounts, scripts."
+    },
+    {
+      q: "The client pays based on which PTES phase output?",
+      ar: "العميل يدفع بناءً على مخرجات أي مرحلة؟",
+      opts: ["Exploitation", "Post-Exploitation", "Intelligence Gathering", "Reporting"],
+      ans: 3,
+      exp: "Reporting is the final & most important phase. The client pays based on the final report."
+    },
+    {
+      q: "During phases 1-3 of PTES, what has the assessor NOT done yet?",
+      ar: "خلال المراحل 1-3، ما الذي لم يفعله المقيّم بعد؟",
+      opts: ["Gathered intelligence", "Written the report", "Touched any resources for testing", "Signed the engagement letter"],
+      ans: 2,
+      exp: "Critical Note: In phases 1-3, only details about the org are extracted. The assessor has NOT touched any resources yet!"
+    },
+    {
+      q: "Which is a valid Method of Access in the Exploitation phase?",
+      ar: "أي من التالي طريقة وصول صحيحة في مرحلة الاستغلال؟",
+      opts: ["Writing the final report", "Login via weak credentials", "Signing the engagement letter", "Infrastructure analysis"],
+      ans: 1,
+      exp: "Methods: Remote exploits, Bypassing AV, Login via weak credentials."
+    }
+  ],
+
+  strategies: [
+    {
+      q: "Which testing strategy is the MOST COMMON professional model?",
+      ar: "أي استراتيجية اختبار هي الأكثر شيوعاً في الممارسة المهنية؟",
+      opts: ["Black Box", "White Box", "Grey Box", "Double-Blind"],
+      ans: 2,
+      exp: "Grey Box is the most common professional model — balances realism with efficiency. | Grey Box الأكثر شيوعاً"
+    },
+    {
+      q: "Black Box testing provides the tester with:",
+      ar: "اختبار Black Box يُزود المختبر بـ:",
+      opts: ["Full source code access", "Standard user credentials", "Zero knowledge", "IP maps and diagrams"],
+      ans: 2,
+      exp: "Black Box = Zero knowledge provided to the tester. External attacker perspective."
+    },
+    {
+      q: "White Box testing simulates which type of attacker?",
+      ar: "اختبار White Box يحاكي أي نوع من المهاجمين؟",
+      opts: ["External hacker with no info", "Regular user", "Malicious insider or administrator", "Anonymous internet user"],
+      ans: 2,
+      exp: "White Box = Full disclosure → simulates malicious insider or administrator."
+    },
+    {
+      q: "In Double-Blind testing, who is NOT notified?",
+      ar: "في اختبار Double-Blind، من لا يُخطَر بالاختبار؟",
+      opts: ["The tester", "The attacker", "The defender", "The client CEO"],
+      ans: 2,
+      exp: "Double-Blind: Defender is not notified — tests detection and response speed."
+    },
+    {
+      q: "Grey Box testing gives the tester which level of knowledge?",
+      ar: "اختبار Grey Box يعطي المختبر أي مستوى من المعرفة؟",
+      opts: ["Zero knowledge", "Full source code", "Partial disclosure — standard user credentials", "IP maps and network diagrams"],
+      ans: 2,
+      exp: "Grey Box = Partial disclosure (standard user credentials). Most common professional model."
+    },
+    {
+      q: "Why is Black Box testing considered slow?",
+      ar: "لماذا يُعتبر اختبار Black Box بطيئاً؟",
+      opts: ["Too many vulnerabilities", "Requires extensive time for reconnaissance", "Tester has too much information", "Too few tools available"],
+      ans: 1,
+      exp: "Black Box: High realism, but requires EXTENSIVE TIME for reconnaissance."
+    },
+    {
+      q: "Which testing type offers Maximum efficiency and technical depth?",
+      ar: "أي نوع اختبار يوفر أقصى كفاءة وعمق تقني؟",
+      opts: ["Black Box", "Grey Box", "Double-Blind", "White Box"],
+      ans: 3,
+      exp: "White Box: Maximum efficiency and technical depth — full knowledge available."
+    }
+  ],
+
+  osi: [
+    {
+      q: "Which OSI layer is responsible for routing data between networks?",
+      ar: "أي طبقة OSI مسؤولة عن توجيه البيانات بين الشبكات؟",
+      opts: ["Transport Layer (4)", "Data Link Layer (2)", "Network Layer (3)", "Session Layer (5)"],
+      ans: 2,
+      exp: "Layer 3: Network Layer — Routes data between devices across multiple networks. Examples: IP, ICMP."
+    },
+    {
+      q: "TCP and UDP operate at which OSI layer?",
+      ar: "TCP و UDP يعملان في أي طبقة OSI؟",
+      opts: ["Network Layer (3)", "Transport Layer (4)", "Session Layer (5)", "Application Layer (7)"],
+      ans: 1,
+      exp: "Layer 4: Transport Layer — TCP, UDP."
+    },
+    {
+      q: "Which layer handles encryption and data format conversion?",
+      ar: "أي طبقة تتولى التشفير وتحويل صيغة البيانات؟",
+      opts: ["Application Layer (7)", "Session Layer (5)", "Presentation Layer (6)", "Transport Layer (4)"],
+      ans: 2,
+      exp: "Layer 6: Presentation Layer — Converts data format, handles encryption & compression. SSL, JPEG, MPEG."
+    },
+    {
+      q: "What is the function of the Physical Layer (Layer 1)?",
+      ar: "ما وظيفة الطبقة الفيزيائية (الطبقة 1)؟",
+      opts: ["Routes data between networks", "Manages sessions", "Transmits raw bits (0s and 1s) over physical medium", "Handles encryption"],
+      ans: 2,
+      exp: "Layer 1: Physical Layer — Transmits raw bits. Examples: Cables, Fiber, Hubs, Repeaters."
+    },
+    {
+      q: "HTTP, FTP, SSH, DNS operate at which OSI layer?",
+      ar: "HTTP, FTP, SSH, DNS تعمل في أي طبقة OSI؟",
+      opts: ["Presentation Layer (6)", "Session Layer (5)", "Transport Layer (4)", "Application Layer (7)"],
+      ans: 3,
+      exp: "Layer 7: Application Layer — Enables user interaction with network services. HTTP, FTP, DNS, SSH."
+    },
+    {
+      q: "Ethernet and PPP are examples of which OSI layer?",
+      ar: "Ethernet و PPP أمثلة على أي طبقة OSI؟",
+      opts: ["Physical Layer (1)", "Data Link Layer (2)", "Network Layer (3)", "Transport Layer (4)"],
+      ans: 1,
+      exp: "Layer 2: Data Link Layer — Formats data into frames. Ethernet, PPP, Switches, Bridges."
+    },
+    {
+      q: "What does the Session Layer (Layer 5) do?",
+      ar: "ماذا تفعل طبقة الجلسة (الطبقة 5)؟",
+      opts: ["Transmits raw bits", "Routes packets", "Manages and controls communication sessions", "Formats data for presentation"],
+      ans: 2,
+      exp: "Layer 5: Session Layer — Manages and controls communication sessions (opening and closing connections). APIs, Sockets."
+    }
+  ],
+
+  tcpip: [
+    {
+      q: "TCP is described as 'connection-oriented'. What does this mean?",
+      ar: "TCP وصف بأنه 'موجه للاتصال'. ماذا يعني هذا؟",
+      opts: ["Data sent without any setup", "A session must be established before data transfer", "No acknowledgment needed", "Data can be lost during transfer"],
+      ans: 1,
+      exp: "TCP is connection-oriented: a session must be established BEFORE data transfer begins."
+    },
+    {
+      q: "What does the TCP SYN flag do?",
+      ar: "ماذا يفعل علم SYN في TCP؟",
+      opts: ["Finish communication", "Reset connection", "Synchronize — initiates connection", "Acknowledge receipt"],
+      ans: 2,
+      exp: "SYN = Synchronize. Used in the first step of the Three-Way Handshake."
+    },
+    {
+      q: "In the Three-Way Handshake, what does Host Q send back to Host P after receiving SYN?",
+      ar: "في المصافحة الثلاثية، ماذا يرسل Host Q بعد استقبال SYN؟",
+      opts: ["Only ACK", "FIN + RST", "SYN-ACK", "Only SYN"],
+      ans: 2,
+      exp: "Step 2: SYN-ACK — Host Q acknowledges (ACK=x+1) and sends its own SYN (seq=y)."
+    },
+    {
+      q: "UDP header size is only:",
+      ar: "حجم رأس UDP هو فقط:",
+      opts: ["4 bytes", "8 bytes", "20 bytes", "32 bytes"],
+      ans: 1,
+      exp: "UDP header is simple and consists of only 8 bytes (vs TCP's 20+ bytes)."
+    },
+    {
+      q: "What does TTL (Time to Live) in the IPv4 header do?",
+      ar: "ماذا يفعل TTL (Time to Live) في رأس IPv4؟",
+      opts: ["Verifies data integrity", "Identifies fragments", "Limits packet lifetime by counting hops", "Specifies source IP address"],
+      ans: 2,
+      exp: "TTL: Limits the packet's lifetime by counting hops before being discarded."
+    },
+    {
+      q: "In the IPv4 header, what does the Protocol field value of '6' mean?",
+      ar: "في رأس IPv4، قيمة حقل البروتوكول '6' تعني؟",
+      opts: ["UDP", "ICMP", "TCP", "IGMP"],
+      ans: 2,
+      exp: "Protocol field: TCP = 6, UDP = 17."
+    },
+    {
+      q: "The Checksum in UDP header is:",
+      ar: "Checksum في رأس UDP هو:",
+      opts: ["Mandatory", "Optional / اختياري", "Not present at all", "Used for routing"],
+      ans: 1,
+      exp: "UDP Checksum (16 bits) = optional error-checking for data integrity."
+    },
+    {
+      q: "IPv6 uses how many bits for addresses?",
+      ar: "IPv6 يستخدم كم بت للعناوين؟",
+      opts: ["32-bit", "64-bit", "128-bit", "256-bit"],
+      ans: 2,
+      exp: "IPv6: 128-bit addresses (vs IPv4's 32-bit)."
+    },
+    {
+      q: "TCP/IP model combines which OSI layers into 'Host-to-Network'?",
+      ar: "نموذج TCP/IP يجمع أي طبقتي OSI في 'المضيف للشبكة'؟",
+      opts: ["Network + Transport", "Application + Presentation", "Physical + Data Link", "Transport + Network"],
+      ans: 2,
+      exp: "TCP/IP combines OSI Physical Layer (1) + Data Link Layer (2) = Host-to-Network Layer."
+    }
+  ],
+
+  protocols: [
+    {
+      q: "What is the PRIMARY purpose of ICMP?",
+      ar: "ما الغرض الأساسي من ICMP؟",
+      opts: ["Transfer user files", "Carry web traffic", "Error reporting and control/management messages", "Encrypt data"],
+      ans: 2,
+      exp: "ICMP: Error Reporting + Operational Messages. NOT for data exchange."
+    },
+    {
+      q: "The 'ping' command uses which protocol?",
+      ar: "أمر 'ping' يستخدم أي بروتوكول؟",
+      opts: ["TCP", "UDP", "FTP", "ICMP"],
+      ans: 3,
+      exp: "Ping uses ICMP to check if a host is reachable and measure round-trip time."
+    },
+    {
+      q: "Which statement about ICMP is TRUE?",
+      ar: "أي من العبارات التالية صحيحة عن ICMP؟",
+      opts: ["It carries user data like TCP", "It is used for control and management, not data exchange", "It uses port 80", "It requires a three-way handshake"],
+      ans: 1,
+      exp: "ICMP does NOT carry user data — unlike TCP or UDP. Used only for control and management."
+    },
+    {
+      q: "Traceroute uses ICMP to:",
+      ar: "Traceroute يستخدم ICMP لـ:",
+      opts: ["Transfer files", "Determine the path packets take to a destination", "Assign IP addresses", "Resolve domain names"],
+      ans: 1,
+      exp: "Traceroute: Determines the path packets take to a destination."
+    }
+  ],
+
+  ports: [
+    {
+      q: "What port does HTTPS use?",
+      ar: "أي منفذ يستخدم HTTPS؟",
+      opts: ["80", "22", "443", "53"],
+      ans: 2,
+      exp: "Port 443 = HTTPS (HTTP with Secure Socket Layer) — secure web traffic."
+    },
+    {
+      q: "Port 22 is used for:",
+      ar: "المنفذ 22 يُستخدم لـ:",
+      opts: ["FTP", "Telnet", "SSH — Secure Shell encrypted remote login", "SMTP"],
+      ans: 2,
+      exp: "Port 22 = SSH (TCP/UDP) — Secure Shell for encrypted remote login."
+    },
+    {
+      q: "Which port is used for DNS?",
+      ar: "أي منفذ يُستخدم لـ DNS؟",
+      opts: ["25", "23", "53", "67"],
+      ans: 2,
+      exp: "Port 53 = DNS (TCP/UDP) — Domain Name System for resolving domain names."
+    },
+    {
+      q: "FTP uses which ports?",
+      ar: "FTP يستخدم أي منافذ؟",
+      opts: ["80 and 443", "20 and 21", "22 and 23", "25 and 53"],
+      ans: 1,
+      exp: "Port 20/21 = FTP (TCP) — File Transfer Protocol."
+    },
+    {
+      q: "Port 23 (Telnet) is considered less secure than SSH because:",
+      ar: "المنفذ 23 (Telnet) يُعتبر أقل أماناً من SSH لأنه:",
+      opts: ["Uses more bandwidth", "Is unencrypted remote login", "Is slower", "Requires more configuration"],
+      ans: 1,
+      exp: "Port 23 = Telnet (TCP): Unencrypted remote login — less secure than SSH."
+    },
+    {
+      q: "Which port does SMTP (email sending) use?",
+      ar: "أي منفذ يستخدم SMTP (إرسال البريد)؟",
+      opts: ["80", "25", "110", "443"],
+      ans: 1,
+      exp: "Port 25 = SMTP (TCP) — Simple Mail Transfer Protocol for email sending."
+    },
+    {
+      q: "Port 80 is associated with which protocol?",
+      ar: "المنفذ 80 مرتبط بأي بروتوكول؟",
+      opts: ["SSH", "FTP", "HTTP", "DNS"],
+      ans: 2,
+      exp: "Port 80 = HTTP (TCP) — HyperText Transfer Protocol for web traffic."
+    },
+    {
+      q: "DHCP (assigning IP addresses) uses which ports?",
+      ar: "DHCP (تعيين عناوين IP) يستخدم أي منافذ؟",
+      opts: ["20/21", "22/23", "67/68", "80/443"],
+      ans: 2,
+      exp: "Port 67/68 = DHCP (UDP) — Dynamic Host Configuration Protocol for assigning IP addresses."
+    }
+  ]
+};
+
+// ============================================================
+// STATE
+// ============================================================
+let scores = { ptes:{c:0,t:0}, strategies:{c:0,t:0}, osi:{c:0,t:0}, tcpip:{c:0,t:0}, protocols:{c:0,t:0}, ports:{c:0,t:0}, all:{c:0,t:0} };
+let answered = {};
+
+// ============================================================
+// RENDER QUIZ
+// ============================================================
+function renderQuiz(containerId, qArr, prefix) {
+  const container = document.getElementById('quiz-'+containerId);
+  if (!container) return;
+  container.innerHTML = '';
+  qArr.forEach((q, i) => {
+    const key = prefix + '_' + i;
+    const div = document.createElement('div');
+    div.className = 'q-item';
+    div.id = 'q-'+key;
+    let optsHtml = q.opts.map((o, j) =>
+      `<div class="opt" onclick="answer('${key}',${j},'${prefix}',${q.ans},'${containerId}')" id="opt-${key}-${j}">${String.fromCharCode(65+j)}. ${o}</div>`
+    ).join('');
+    div.innerHTML = `
+      <div class="q-text">Q${i+1}: ${q.q}</div>
+      <div class="q-ar">${q.ar}</div>
+      <div class="options">${optsHtml}</div>
+      <div class="feedback" id="fb-${key}"></div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function answer(key, chosen, prefix, correct, scoreKey) {
+  if (answered[key]) return;
+  answered[key] = true;
+
+  const isCorrect = (chosen === correct);
+  
+  // Highlight options
+  document.getElementById(`opt-${key}-${correct}`).classList.add('correct');
+  if (!isCorrect) document.getElementById(`opt-${key}-${chosen}`).classList.add('wrong');
+  
+  // Disable other opts
+  const q = ALL_QUESTIONS[prefix].find((_,i) => prefix+'_'+i === key);
+  const qIndex = ALL_QUESTIONS[prefix].findIndex((_,i) => prefix+'_'+i === key);
+  // mark remaining non-chosen non-correct as neutral
+  ALL_QUESTIONS[prefix][qIndex].opts.forEach((_,j) => {
+    if (j !== chosen && j !== correct) {
+      const el = document.getElementById(`opt-${key}-${j}`);
+      if (el) el.style.opacity = '0.4';
+    }
+  });
+
+  // Feedback
+  const fb = document.getElementById('fb-'+key);
+  fb.className = `feedback show ${isCorrect ? 'ok' : 'bad'}`;
+  fb.innerHTML = `${isCorrect ? '✅ Correct!' : '❌ Wrong!'} — ${q.exp}`;
+
+  // Score
+  if (isCorrect) scores[scoreKey].c++;
+  scores[scoreKey].t++;
+  updateScore(scoreKey);
+
+  // Also update all score
+  if (scoreKey !== 'all') {
+    if (isCorrect) scores.all.c++;
+    scores.all.t++;
+    updateScore('all');
+  }
+}
+
+function updateScore(key) {
+  const el = document.getElementById('score-'+key);
+  if (el) el.textContent = `${scores[key].c} / ${scores[key].t}`;
+}
+
+function resetQuiz(key) {
+  if (key === 'all') {
+    // reset all sub-scores too
+    Object.keys(scores).forEach(k => { scores[k] = {c:0,t:0}; });
+    Object.keys(answered).forEach(k => delete answered[k]);
+    Object.keys(ALL_QUESTIONS).forEach(k => renderQuiz(k, ALL_QUESTIONS[k], k));
+    // re-render full quiz
+    renderFullQuiz();
+    Object.keys(scores).forEach(k => updateScore(k));
+  } else {
+    // reset only this section's answered keys
+    Object.keys(answered).forEach(k => { if (k.startsWith(key+'_')) delete answered[k]; });
+    scores[key] = {c:0,t:0};
+    updateScore(key);
+    renderQuiz(key, ALL_QUESTIONS[key], key);
+  }
+}
+
+function renderFullQuiz() {
+  // Flatten all questions with shuffled order
+  const container = document.getElementById('quiz-all-container');
+  if (!container) return;
+  container.innerHTML = '';
+  let allQ = [];
+  Object.entries(ALL_QUESTIONS).forEach(([prefix, qs]) => {
+    qs.forEach((q,i) => allQ.push({...q, prefix, origIndex: i}));
+  });
+  // shuffle
+  for (let i = allQ.length-1; i>0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [allQ[i],allQ[j]] = [allQ[j],allQ[i]];
+  }
+  allQ.forEach((q, i) => {
+    const key = 'all_'+i;
+    const card = document.createElement('div');
+    card.className = 'card';
+    const topic = {ptes:'PTES',strategies:'Strategies',osi:'OSI',tcpip:'TCP/IP',protocols:'Protocols',ports:'Ports'}[q.prefix];
+    let optsHtml = q.opts.map((o,j) =>
+      `<div class="opt" onclick="answerAll('${key}',${j},${q.ans})" id="opt-${key}-${j}">${String.fromCharCode(65+j)}. ${o}</div>`
+    ).join('');
+    card.innerHTML = `
+      <div class="quiz-title">Q${i+1} <span style="font-size:0.75rem;background:#334155;padding:2px 8px;border-radius:8px;color:#94a3b8;">${topic}</span></div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-ar">${q.ar}</div>
+      <div class="options">${optsHtml}</div>
+      <div class="feedback" id="fb-${key}"></div>
+      <div style="font-size:0.75rem;color:#475569;margin-top:4px;">Explanation stored for: ${q.exp.substring(0,60)}...</div>
+    `;
+    // Store for answer use
+    card.dataset.correct = q.ans;
+    card.dataset.exp = q.exp;
+    card.dataset.optsLen = q.opts.length;
+    container.appendChild(card);
+  });
+  window._allQuizData = allQ;
+}
+
+function answerAll(key, chosen, correct) {
+  if (answered[key]) return;
+  answered[key] = true;
+  const isCorrect = (chosen === correct);
+  document.getElementById(`opt-${key}-${correct}`).classList.add('correct');
+  if (!isCorrect) document.getElementById(`opt-${key}-${chosen}`).classList.add('wrong');
+  const idx = parseInt(key.split('_')[1]);
+  const q = window._allQuizData[idx];
+  q.opts.forEach((_,j) => {
+    if (j!==chosen && j!==correct) { const el=document.getElementById(`opt-${key}-${j}`); if(el) el.style.opacity='0.4'; }
+  });
+  const fb = document.getElementById('fb-'+key);
+  fb.className = `feedback show ${isCorrect?'ok':'bad'}`;
+  fb.innerHTML = `${isCorrect?'✅ Correct!':'❌ Wrong!'} — ${q.exp}`;
+  if(isCorrect) scores.all.c++;
+  scores.all.t++;
+  updateScore('all');
+}
+
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+window.onload = function() {
+  Object.entries(ALL_QUESTIONS).forEach(([k, qs]) => renderQuiz(k, qs, k));
+  renderFullQuiz();
+};
+</script>
+</body>
+</html>
